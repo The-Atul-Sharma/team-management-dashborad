@@ -1,0 +1,25 @@
+label {
+	color: #333333;
+	font-size: 1.2em;
+}
+
+input[type=text],
+select,
+textarea {
+	width: 100%;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	padding: 9px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	background-color: #ffffff;
+}
+
+textarea {
+	height: 80px;
+	resize: none;
+}
+
+.addmember_submit {
+	text-align: center;
+}

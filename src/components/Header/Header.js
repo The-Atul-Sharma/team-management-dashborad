@@ -8,8 +8,8 @@ export default class Header extends Component {
 				<div className="header__title">
 					<span>Team Members</span>
 				</div>
-				<div>
-					<button className="header__button">Add Member +</button>
+				<div className="header__button">
+					<button className="btn" onClick={() => this.props.addMember()}>Add Member +</button>
 				</div>
 			</div>
     );

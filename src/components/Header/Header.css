@@ -18,12 +18,4 @@
 
 .header__button {
 	margin-top: 27px;
-	padding: 5px 15px;
-	border-radius: 24px;
-	background-color: #4b74ff;
-	border:1px solid #fff;
-	line-height: 1.5;
-	font-size: 1em;
-	color: #ffffff;
-	cursor: pointer;
 }
