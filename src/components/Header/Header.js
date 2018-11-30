@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Header.css';
 
 export default class Header extends Component {
+	static propTypes = {
+		addMember: PropTypes.func.isRequired,
+	};
+
   render() {
     return (
 			<div className="header">
