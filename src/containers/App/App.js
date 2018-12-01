@@ -5,6 +5,7 @@ import Modal from '../../components/Modal/Modal';
 import AddMemberForm from '../../components/AddMemberForm/AddMemberForm';
 import MemberTable from '../../containers/MemberTable/MemberTable';
 import { addMember } from '../../actions/member';
+import isEqual from 'lodash/isEqual';
 
 const generateKey = () => {
   return `${ new Date().getTime() }`;
@@ -62,7 +63,7 @@ class App extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.membersList.length !== nextProps.membersList.length) {
+    if (!isEqual(prevState.membersList, nextProps.membersList)) {
       return {
         membersList: nextProps.membersList,
       };

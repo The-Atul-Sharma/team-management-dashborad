@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleMemberList from '../../components/SingleMemberList/SingleMemberList';
 import './MemberTable.css';
@@ -6,25 +7,28 @@ import { deleteMember, sortMembersList, checkedMember, checkedAllMembers } from 
 import arrow_up_icon from '../../assets/icons/arrow_up.svg';
 
 class MemberTable extends Component {
+  static propTypes = {
+    membersList: PropTypes.array.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       isAllChecked: false,
       isSortIconRotate: false,
-      sortOrder: true,
+      sortOrder: true, // For Asc true and Desc false
     }; 
   }
 
-  selectAllCheckbox = event => {
-    console.log("selectAllCheckbox", event);
-    event.persist();
+  handleSingleCheckbox = (memberInfo) => {
+    this.props.checkedMember(memberInfo);
+  }
+
+  selectAllCheckbox = () => {
+    this.props.checkedAllMembers(!this.state.isAllChecked);
     this.setState({
       isAllChecked: !this.state.isAllChecked,
     });
-  }
-
-  handleSingleCheckbox = (memberInfo, isChecked) => {
-    this.props.checkedMember(memberInfo, isChecked);
   }
 
   deleteMember = memberId => {
@@ -49,8 +53,8 @@ class MemberTable extends Component {
                 <label className="checkbox">
                   <input
                       type="checkbox"
-                      defaultChecked={this.props.isAllChecked ? true : false}
-                      onClick={event => this.selectAllCheckbox(event)}
+                      checked={this.state.isAllChecked ? true : false}
+                      onChange={this.selectAllCheckbox}
                   />
                   <span className="checkbox__checkmark"></span>
                 </label>
@@ -122,8 +126,8 @@ class MemberTable extends Component {
           </thead>
           <tbody>
             {this.props.membersList.map( member => {
-              return <SingleMemberList key={member.id} member={member} isChecked={this.state.allchecked}
-                handleCheckbox={this.handleSingleCheckbox} deleteMember={this.deleteMember} />
+              return <SingleMemberList key={member.id} member={member} handleCheckbox={this.handleSingleCheckbox} 
+                deleteMember={this.deleteMember} />
             })}
           </tbody>
         </table>

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './SingleMemberList.css';
 import more_icon from '../../assets/icons/more.svg';
 import delete_icon from '../../assets/icons/delete.svg';
 
 export default class SingleMemberList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChecked: props.member.isChecked,
-    };
-  }
+  static propTypes = {
+    member: PropTypes.object.isRequired,
+    handleCheckbox: PropTypes.func.isRequired,
+    deleteMember: PropTypes.func.isRequired,
+  };
 
   handleChange = () => {
-    this.setState({
-      isChecked: !this.props.member.isChecked,
-    }, this.props.handleCheckbox(this.props.member, this.state.isChecked));
+    this.props.handleCheckbox(this.props.member);
   }
 
   render() {
@@ -24,7 +22,7 @@ export default class SingleMemberList extends Component {
           <label className="checkbox">
             <input
                 type="checkbox"
-                defaultChecked={this.props.member.isChecked ? true : false}
+                checked={this.props.member.isChecked ? true : false}
                 onChange={() => this.handleChange()}
             />
             <span className="checkbox__checkmark"></span>

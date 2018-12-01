@@ -16,7 +16,6 @@ export const checkedMember = (memberInfo, isChecked) => {
   return {
     type: 'CHECK_MEMBER', 
     memberInfo,
-    isChecked,
   };
 }
 
