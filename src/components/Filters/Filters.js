@@ -5,8 +5,6 @@ import arrow_up_icon from '../../assets/icons/arrow_up.svg';
 
 export default class Filters extends Component {
   static propTypes = {
-    status: PropTypes.status,
-    onChange: PropTypes.func.isRequired,
     indexLastMember: PropTypes.number.isRequired, 
     totalNoOfPages: PropTypes.number.isRequired,
     previousPage: PropTypes.func.isRequired,
@@ -19,15 +17,14 @@ export default class Filters extends Component {
         {/* {this.props.lists} */}
         <div className="filters__select">
           <div className="filters__select__company">
-            <select value="" name="status">
-              {/* {this.props.companyList} */}
+            <select>
+            <option>Company {this.props.selectedMemberCount}</option>
+              {this.props.renderCompanyFilter}
             </select>
           </div>
           <div className="filters__select__status">
             <select 
               name="status" 
-              value={this.props.status} 
-              onChange={this.props.onChange}
             >
               <option value="NA">Status</option>
               <option value="closed">Closed</option>
@@ -39,7 +36,12 @@ export default class Filters extends Component {
         <div className="filters__pagination">
           <div className="filters__pagination__number">
             <span className="filters__pagination__number__opacity">Viewing&nbsp;</span>
-            <span> {this.props.indexFirstMember + 1} - {this.props.indexLastMember} </span>
+            <span> {this.props.indexFirstMember + 1} - </span> 
+              { this.props.indexLastMember > this.props.totalNoOfPages 
+                ? <span> {this.props.totalNoOfPages} </span> 
+                  :  <span> {this.props.indexLastMember} 
+                    </span>
+              }
             <span className="filters__pagination__number__opacity">&nbsp;of&nbsp;</span>
             <span>{this.props.totalNoOfPages}</span>
           </div>
