@@ -1,6 +1,6 @@
 # Team Management Dashboard
 
-Technologies used: ReactJS, Redux.
+Technologies used: ReactJS, Redux, localStorage.
 
 ### Features
 1. Add new member.
@@ -8,6 +8,7 @@ Technologies used: ReactJS, Redux.
 3. Sort members according to their header.
 4. Select all members or single member.
 5. Pagination for members.
+6. Used localStorage for save members.
 
 
 ### Installation
