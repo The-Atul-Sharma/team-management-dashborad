@@ -19,6 +19,7 @@ if (JSON.parse(localStorage.getItem('membersList'))) {
   initialState = { 
     members: {
       membersList: JSON.parse(localStorage.getItem('membersList')),
+      isAllChecked: JSON.parse(localStorage.getItem('isAllChecked')),
     }, 
   };
 }

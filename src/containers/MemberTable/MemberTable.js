@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleMemberList from '../../components/SingleMemberList/SingleMemberList';
+import Filters from '../../components/Filters/Filters';
 import './MemberTable.css';
 import { deleteMember, sortMembersList, checkedMember, checkedAllMembers } from '../../actions/member';
 import arrow_up_icon from '../../assets/icons/arrow_up.svg';
@@ -17,6 +18,11 @@ class MemberTable extends Component {
       isAllChecked: false,
       isSortIconRotate: false,
       sortOrder: true, // For Asc true and Desc false
+      status: 'NA',
+      renderMemberList: props.membersList,
+      totalNoOfPages: props.membersList.length,
+      currentPage: 1,
+      memberPerPage: 8,
     }; 
   }
 
@@ -43,9 +49,67 @@ class MemberTable extends Component {
     });
   }
 
+  filterStatus = event => {
+    // event.persist();
+    // this.setState({ [event.target.name]: event.target.value, });
+    // let filterMembersList = event.target.value !== 'NA' ? this.props.membersList.filter(member => member.status === event.target.value) : this.props.membersList;
+    // this.setState({ renderMemberList: filterMembersList });
+    // this.renderMembers = filterMembersList.map(member => {
+    //   return <SingleMemberList key={member.id} 
+    //     member={member} 
+    //     handleCheckbox={this.handleSingleCheckbox} 
+    //     deleteMember={this.deleteMember} 
+    //   />
+    // });
+  }
+
+  previousPage = () => {
+    this.setState({
+      currentPage: this.state.currentPage - 1,
+    });   
+  }
+
+  nextPage = () => {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.isAllChecked !== nextProps.isAllChecked) {
+      return {
+        isAllChecked: nextProps.isAllChecked,
+      };
+    }
+
+    return null;
+  }
+
   render() {
+    
+    const indexOfLastMember = this.state.currentPage * this.state.memberPerPage;
+    const indexOfFirstMember = indexOfLastMember - this.state.memberPerPage;
+    const currentMembers = this.props.membersList.slice(indexOfFirstMember, indexOfLastMember);
+
+    const renderMembers = currentMembers.map(member => {
+        return <SingleMemberList key={member.id} 
+          member={member} 
+          handleCheckbox={this.handleSingleCheckbox} 
+          deleteMember={this.deleteMember} 
+      />;
+    });
+
     return (
       <div className="membertable">
+        <Filters 
+          status={this.state.status} 
+          onChange={this.filterStatus} 
+          indexFirstMember={indexOfFirstMember}
+          indexLastMember={indexOfLastMember} 
+          totalNoOfPages={this.state.totalNoOfPages} 
+          previousPage={this.previousPage} 
+          nextPage={this.nextPage} 
+        />
         <table>
           <thead>
             <tr>
@@ -125,10 +189,7 @@ class MemberTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.membersList.map( member => {
-              return <SingleMemberList key={member.id} member={member} handleCheckbox={this.handleSingleCheckbox} 
-                deleteMember={this.deleteMember} />
-            })}
+            {renderMembers}
           </tbody>
         </table>
       </div>
@@ -136,7 +197,14 @@ class MemberTable extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    isAllChecked: state.members.isAllChecked,
+    filterMembersList: state.members.filterMembersList,
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { deleteMember, sortMembersList, checkedMember, checkedAllMembers }
 )(MemberTable);

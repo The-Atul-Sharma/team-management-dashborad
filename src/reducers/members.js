@@ -1,4 +1,4 @@
-export default (state = { membersList: [], }, action = {}) => {
+export default (state = { membersList: [], isAllChecked: false, }, action = {}) => {
   let updatedMembersList = [];
   switch (action.type) {
     case 'ADD_MEMBER':
@@ -20,7 +20,7 @@ export default (state = { membersList: [], }, action = {}) => {
     case 'SORT_MEMBERS':
       // Asc sort
       if (action.sortOrder) {
-        updatedMembersList = state.membersList.sort(function(a, b){
+        updatedMembersList = state.membersList.sort(function(a, b) {
           let nameA = a[action.sortBy].toLowerCase(), nameB = b[action.sortBy].toLowerCase();
           if (nameA < nameB)
             return -1; 
@@ -30,7 +30,7 @@ export default (state = { membersList: [], }, action = {}) => {
         });
       }  else {
         // Desc sort
-        updatedMembersList = state.membersList.sort(function(a, b){
+        updatedMembersList = state.membersList.sort(function(a, b) {
           let nameA = a[action.sortBy].toLowerCase(), nameB = b[action.sortBy].toLowerCase();
           if (nameA > nameB)
             return -1; 
@@ -66,9 +66,11 @@ export default (state = { membersList: [], }, action = {}) => {
       });
       // Set in localStorage
       localStorage.setItem('membersList', JSON.stringify(updatedMembersList));
+      localStorage.setItem('isAllChecked', JSON.stringify(action.isAllChecked));
       return {
         ...state,
         membersList: updatedMembersList,
+        isAllChecked: action.isAllChecked,
       };
     default:
       return state;

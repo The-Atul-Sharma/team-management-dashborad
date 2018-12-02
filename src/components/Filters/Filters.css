@@ -1,0 +1,148 @@
+.filters {
+  display: flex;
+  flex-direction: row;
+  height: 65px;
+	background-color: #ffffff;
+}
+
+.filters__select {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.ilters__select__company {
+	width: 120px;
+	margin-left: 37px;
+	float: left;
+}
+
+.filters__select__status {
+	float: right;
+	margin-left: 10px;
+}
+
+.filters__pagination {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: 0;
+	margin-top: 5px;
+}
+
+.filters__pagination__number {
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.filters__pagination__number__opacity {
+	opacity: 0.5;
+}
+
+.filters__pagination__button {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.filters__pagination__button__arrow {
+	padding: 3px;
+	border-radius: 4px;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.filters__pagination__button__arrow__prev {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+}
+
+.filters__pagination__button__arrow__next {
+  transform: rotate(-270deg);
+  -webkit-transform: rotate(-270deg);
+	-ms-transform: rotate(-270deg);
+}
+
+/* .header-dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.header-dropdown>button {
+	font-size: 13px;
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 10px 20px 10px 10px;
+	border-radius: 4px;
+	display: inline-block;
+	color: black;
+	text-decoration: none;
+	margin-top: 6px;
+}
+
+.header-dropdown>button:before {
+	position: absolute;
+	right: 7px;
+	top: 12px;
+	content: ' ';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid black;
+}
+
+.header-dropdown input[type=checkbox] {
+	position: absolute;
+	display: block;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	opacity: 0;
+}
+
+.header-dropdown input[type=checkbox]:checked {
+	position: fixed;
+	z-index: +0;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.header-dropdown ul {
+	position: absolute;
+	top: 32px;
+	left: 0px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	list-style: none;
+	padding: 4px 0px;
+	display: none;
+	background-color: white;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .175);
+}
+
+.header-dropdown input[type=checkbox]:checked+ul {
+	display: block;
+}
+
+.header-dropdown ul li {
+	display: block;
+	padding: 6px 20px;
+	white-space: nowrap;
+	min-width: 100px;
+}
+
+.header-dropdown ul li:hover {
+	background-color: #F5F5F5;
+	cursor: pointer;
+}
+
+.header-dropdown ul li a {
+	text-decoration: none;
+	display: block;
+	color: black
+} */
