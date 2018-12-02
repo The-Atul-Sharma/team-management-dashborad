@@ -14,7 +14,6 @@ export default class Filters extends Component {
   render() {
     return (
       <div className="filters">
-        {/* {this.props.lists} */}
         <div className="filters__select">
           <div className="filters__select__company">
             <select>
